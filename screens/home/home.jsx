@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, View, Image } from "react-native";
 import useBattery from "../../hooks/use-battery";
 import useImagePicker from "../../hooks/use-image-picker";
@@ -7,6 +8,7 @@ import Button from "../../components/button";
 
 export default function Home() {
   const batteryLevel = useBattery();
+  const navigation = useNavigation();
   const {
     image,
     openImagePickerAsync,
@@ -44,6 +46,13 @@ export default function Home() {
       {image && (
         <Button onButtonPress={clearSelectedImage} label="Clear image" />
       )}
+
+      <Button
+        label="Got to Tour"
+        onButtonPress={() => {
+          navigation.navigate("tour-details");
+        }}
+      />
     </View>
   );
 }
